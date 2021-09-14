@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Millionaire</title>
+    <script>
+        /* 
+        3. *На базе игры, созданной на уроке, реализовать игру «Кто хочет стать миллионером?»
+        */
+
+
+        var dbGame = [
+            ["Сколько в комнате кошек, если в каждом из четырех углов сидит по кошке, а напротив каждой кошки сидит по кошке?",
+                "1. 12.",
+                "2. 16.",
+                "3. 4.",
+                "4. 8.",
+                100,
+                3
+            ],
+            ["Крышка стола имеет четыре угла. Один из них отпилили. Сколько углов стало?",
+                "1. 4.",
+                "2. 3.",
+                "3. 5.",
+                "4. 6.",
+                200,
+                3
+            ],
+            ["Сколько нужно сделать распилов, что бы распилить бревно на 12 частей?",
+                "1. 11.",
+                "2. 12.",
+                "3. 10.",
+                "4. 6.",
+                300,
+                1
+            ],
+            ["Каким числом является сумма натуральных чисел?",
+                "1. Целым.",
+                "2. Натуральным.",
+                "3. Положительным.",
+                "4. Отрицательным.",
+                500,
+                2
+            ],
+            ["Под каким номером самая тонкая кисть для рисования?",
+                "1. 2.",
+                "2. 0.",
+                "3. 3.",
+                "4. 1.",
+                1000,
+                4
+            ]
+        ]
+
+        var counter = 0;
+
+        WorkQuestion = function (question) {
+            var myAnser;
+            this.question = question;
+
+            this.show = function () {
+                myAnser = +prompt(this.question[0] + " Выигрыш " + this.question[5] + "₽\n" + this.question[1] + "\n" + this.question[2] + "\n" + this.question[3] + "\n" + this.question[4]);
+            };
+
+            this.check = function () {
+                if (this.question[6] == myAnser) {
+                    counter += +(this.question[5]);
+                    alert("Верно! Ваш выигрыш составил " + this.question[5] + "₽. ИТОГО: " + counter);
+                } else if (myAnser == 1 || myAnser == 2 || myAnser == 3 || myAnser == 4) {
+                    alert("Не верно! Вы проиграли!");
+                    counter = -1;
+                } else {
+                    return false;
+                };
+            }
+
+            this.correct = function () {
+                if (!parseInt(myAnser)) {
+                    alert("Некорректный ответ! Повторите ввод ответа (1 2 3 4) или нажмите q для выхода!");
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        for (var quest of dbGame) {
+            wQuestion = new WorkQuestion(quest);
+            wQuestion.show();
+            if (!wQuestion.check()) {
+                while (!wQuestion.correct()) {
+                    wQuestion.show();
+                    wQuestion.check();
+                }
+            }
+            if (counter == -1) {
+                break;
+            }
+        }
+
+        if (counter > 0) {
+            alert("Пздравляем! Вы победили! ВАШ ВЫИГРЫШ " + counter + "₽ !");
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+    <div></div>
+</body>
+
+</html>
