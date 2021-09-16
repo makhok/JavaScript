@@ -64,7 +64,10 @@
             }
             else {
                 ok = isAnswer(works.a0, event);
-                getResult(works.a00, event);
+                if (ok) {
+                    getResult(works.a00, event);
+                }
+
             }
         } while (!ok);
         switch (event) {
@@ -78,6 +81,9 @@
                     }
                     else {
                         ok = isAnswer(works.b0, event);
+                        if (ok) {
+                            getResult(works.b00, event);
+                        }
                     }
                 } while (!ok);
                 switch (event) {
@@ -85,11 +91,15 @@
                         do {
                             ok = false;
                             event = +prompt(works.d00 + works.d1 + works.d2 + '-1 - Выход из игры');
+
                             if (event == -1) {
                                 break;
                             }
                             else {
                                 ok = isAnswer(works.d0, event);
+                                if (ok) {
+                                    getResult(works.d00, event);
+                                }
                             }
                         } while (!ok);
 
@@ -98,11 +108,15 @@
                         do {
                             ok = false;
                             event = +prompt(works.d00 + works.d1 + works.d2 + '-1 - Выход из игры');
+
                             if (event == -1) {
                                 break;
                             }
                             else {
                                 ok = isAnswer(works.d0, event);
+                                if (ok) {
+                                    getResult(works.d00, event);
+                                }
                             }
                         } while (!ok);
 
@@ -117,11 +131,15 @@
                 do {
                     ok = false;
                     event = +prompt(works.c00 + works.c1 + works.c2 + '-1 - Выход из игры');
+
                     if (event == -1) {
                         break;
                     }
                     else {
                         ok = isAnswer(works.c0, event);
+                        if (ok) {
+                            getResult(works.c00, event);
+                        }
                     }
                 } while (!ok);
                 switch (event) {
@@ -129,11 +147,15 @@
                         do {
                             ok = false;
                             event = +prompt(works.d00 + works.d1 + works.d2 + '-1 - Выход из игры');
+
                             if (event == -1) {
                                 break;
                             }
                             else {
                                 ok = isAnswer(works.d0, event);
+                                if (ok) {
+                                    getResult(works.d00, event);
+                                }
                             }
                         } while (!ok);
 
@@ -142,11 +164,15 @@
                         do {
                             ok = false;
                             event = +prompt(works.d00 + works.d1 + works.d2 + '-1 - Выход из игры');
+
                             if (event == -1) {
                                 break;
                             }
                             else {
                                 ok = isAnswer(works.d0, event);
+                                if (ok) {
+                                    getResult(works.d00, event);
+                                }
                             }
                         } while (!ok);
 
@@ -177,8 +203,6 @@
         alert('Спасибо за игру');
 
 
-
-
         //------------------------------------------
 
         function getResult(quest, answ) {
@@ -187,23 +211,34 @@
                 case works.a00:
                     if (answ == 1) {
                         answers.push([works.a00, works.a1]);
-                    } else {
+                    } else if (answ == 2) {
                         answers.push([works.a00, works.a2]);
-                    };
+                    }
+                    break
 
                 case works.b00:
                     if (answ == 1) {
                         answers.push([works.b00, works.b1]);
-                    } else {
+                    } else if (answ == 2) {
                         answers.push([works.b00, works.b2]);
-                    };
+                    }
+                    break
 
                 case works.c00:
                     if (answ == 1) {
                         answers.push([works.c00, works.c1]);
-                    } else {
+                    } else if (answ == 2) {
                         answers.push([works.c00, works.c2]);
-                    };
+                    }
+                    break
+
+                case works.d00:
+                    if (answ == 1) {
+                        answers.push([works.d00, works.d1]);
+                    } else if (answ == 2) {
+                        answers.push([works.d00, works.d2]);
+                    }
+                    break
             };
             return console.log(answers);
         }
