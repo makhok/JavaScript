@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess</title>
+</head>
+
+<body>
+    <p id="par"></p>
+    <table></table>
+
+
+    <script>
+
+        /*
+         1. Создать функцию, генерирующую шахматную доску. При этом
+         можно использовать любые html-теги по своему желанию.
+         Доска должна быть разлинована соответствующим образом,
+         т.е. чередовать черные и белые ячейки. Строки должны
+         нумероваться числами от 1 до 8, столбцы – латинскими
+         буквами A, B, C, D, E, F, G, H.
+        */
+
+        function creatChess() {
+            var table = document.createElement("table"), tr, td;
+            var arrEN = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', ''];
+
+            for (var i = 1; i <= 10; i++) {
+                tr = document.createElement("tr");
+                table.append(tr);
+                for (var j = 1; j <= 10; j++) {
+                    td = document.createElement("td");
+                    td.style.width = "18px";
+                    td.style.height = "25px";
+
+                    // Разлиновка шахмотной доски черным (белым)
+                    if (i == 1 || i == 10 || j == 1 || j == 10) {
+                        td.style.backgroundColor = "none";
+                    } else if ((i % 2 == 0 && j % 2 != 0) || (i % 2 != 0 && j % 2 == 0)) {
+                        td.style.backgroundColor = "grey";
+                    };
+
+                    // Подписи букв
+                    if (i == 1 || i == 10) {
+                        td.style.border = "none";
+                        td.style.paddingLeft = "10px";
+                        td.style.fontSize = "10px";
+
+                        if (i == 1) {
+                            td.style.transform = "rotate(" + 180 + "deg)"; // поворот букв на 180 градусов
+                        }
+                        td.innerHTML = arrEN[j - 1];
+                    } else {
+                        td.style.border = "0.1px solid grey";
+                        td.style.paddingLeft = "5px";
+
+                        // Расстоновка фигур
+                        // Черные фигуры
+                        if (i == 3) {
+                            td.innerHTML = "&#9823"; // черные пешки
+                        } else if (i == 2 && (j == 2 || j == 9)) {
+                            td.innerHTML = "&#9820"; // черная ладья
+                        } else if (i == 2 && (j == 3 || j == 8)) {
+                            td.innerHTML = "&#9822"; // черный конь 
+                        } else if (i == 2 && (j == 4 || j == 7)) {
+                            td.innerHTML = "&#9821"; // черный слон 
+                        } else if (i == 2 && j == 5) {
+                            td.innerHTML = "&#9819"; // черный ферзь 
+                        } else if (i == 2 && j == 6) {
+                            td.innerHTML = "&#9818"; // черный король 
+                        }
+                        // Белые фигуры
+                        else if (i == 8) {
+                            td.innerHTML = "&#9817"; // белые пешки
+                        } else if (i == 9 && (j == 2 || j == 9)) {
+                            td.innerHTML = "&#9814"; // белая ладья
+                        } else if (i == 9 && (j == 3 || j == 8)) {
+                            td.innerHTML = "&#9816"; // белый конь 
+                        } else if (i == 9 && (j == 4 || j == 7)) {
+                            td.innerHTML = "&#9815"; // белый слон 
+                        } else if (i == 9 && j == 5) {
+                            td.innerHTML = "&#9813"; // белый ферзь 
+                        } else if (i == 9 && j == 6) {
+                            td.innerHTML = "&#9812"; // белый король 
+                        }
+                    };
+
+                    // Подписи цифр
+                    if ((j == 1 && i > 1 && i < 10) || (j == 10 && i > 1 && i < 10)) {
+                        td.style.border = "none";
+                        td.style.fontSize = "10px";
+                        td.style.paddingLeft = "10px"
+                        if (j == 10) {
+                            td.style.transform = "rotate(" + 180 + "deg)"; // Поворот цифр
+                        }
+                        td.innerHTML = 10 - i;
+                    }
+
+                    tr.append(td);
+                }
+            }
+
+            table.style.borderCollapse = "collapse";
+            document.querySelector("table").appendChild(table);
+        }
+
+
+        creatChess();
+
+    </script>
+
+</body>
+
+</html>
